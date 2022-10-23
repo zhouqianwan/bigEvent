@@ -28,7 +28,7 @@ $(function() {
     $("#form_register").on("submit", function(e) {
         e.preventDefault();
         data = { username: $("#form_register [name=username]").val(), password: $("#form_register [name=password]").val() }
-        $.post("http://127.0.0.1:3007/api/register", data, function(res) {
+        $.post("/api/register", data, function(res) {
             if (res.status != 0) {
                 layer.msg(res.messag);
             }
@@ -47,17 +47,19 @@ $(function() {
     // 提交登录的post事件
     $("#form_login").on("submit", function(e) {
         e.preventDefault();
-        data = { username: $("#form_login [name=username]").val(), password: $("#form_login [name=password]").val() }
-        $.post("http://127.0.0.1:3007/api/login", data, function(res) {
-            if (res.status != 0) {
-                layer.msg(res.messag);
+        // data = { username: $("#form_login [name=username]").val(), password: $("#form_login [name=password]").val() }
+        data = $(this).serialize();
+        $.post("/api/login", data, function(res) {
+            if (res.status !== 0) {
+                return layer.msg("登陆失败！");
             }
-            layer.msg('登录成功！', {
-                icon: 1,
-                time: 2000 //2秒关闭（如果不配置，默认是3秒）
-            }, function() {
-                location.href = "/index.html"
-            });
-        })
+            layer.msg('登录成功！');
+            // 登录成功的话，会从服务器返回一个token字符串，将他保存在localStorage中
+            localStorage.setItem("token", res.token);
+            // 设置定时器一秒中后在跳转页面
+            setTimeout(function() {
+                location.href = "/index.html";
+            }, 1000)
+        });
     })
 })
