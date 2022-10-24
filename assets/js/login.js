@@ -4,6 +4,8 @@ $(function() {
         $(".login_box").hide();
         $(".register_box").show();
     });
+
+
     // 点击去登录，登录页面显示   注册页面隐藏 
     $("#tologin").on("click", function() {
             $(".register_box").hide();
@@ -29,18 +31,17 @@ $(function() {
         e.preventDefault();
         data = { username: $("#form_register [name=username]").val(), password: $("#form_register [name=password]").val() }
         $.post("/api/register", data, function(res) {
-            if (res.status != 0) {
-                layer.msg(res.messag);
+            if (res.status !== 0) {
+                return layer.msg(res.message);
             }
-            layer.msg('注册成功！', {
-                icon: 1,
-                time: 2000 //2秒关闭（如果不配置，默认是3秒）
-            }, function() {
+            layer.msg('注册成功！');
+            setTimeout(function() {
                 $("#tologin").click();
                 $("#form_register [name=username]").val("");
                 $("#form_register [name=password]").val("")
                 $("#form_register [name=repassword]").val("")
-            });
+            }, 2000)
+
         })
     })
 
@@ -50,7 +51,9 @@ $(function() {
         // data = { username: $("#form_login [name=username]").val(), password: $("#form_login [name=password]").val() }
         data = $(this).serialize();
         $.post("/api/login", data, function(res) {
+            console.log(res);
             if (res.status !== 0) {
+                console.log(54454555);
                 return layer.msg("登陆失败！");
             }
             layer.msg('登录成功！');
@@ -58,7 +61,7 @@ $(function() {
             localStorage.setItem("token", res.token);
             // 设置定时器一秒中后在跳转页面
             setTimeout(function() {
-                location.href = "/index.html";
+                // location.href = "/index.html";
             }, 1000)
         });
     })

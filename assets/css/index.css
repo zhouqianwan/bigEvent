@@ -1,0 +1,80 @@
+#index_logo {
+    margin-left: -20px;
+    width: 100px;
+}
+
+
+/* 将首页这两个字的字体变大 */
+
+#index_title {
+    font-size: 16px;
+}
+
+.layui-footer {
+    text-align: center;
+}
+
+.iconfont {
+    margin-right: 10px;
+}
+
+#iframe {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 超出隐藏，清除两个滑动同时出现 */
+
+.layui-body {
+    overflow: hidden;
+}
+
+
+/* 强制清除a的所有动画 */
+
+a {
+    transition: none!important;
+}
+
+
+/* 左上角头像  */
+
+#index_userinfo {
+    height: 60px;
+    line-height: 60px;
+    font-size: 12px;
+    color: #fff;
+    /* 文字禁止选中 */
+    user-select: none;
+    border-bottom: 1px solid #282b33;
+}
+
+#index_userinfo img {
+    margin-left: 20px;
+}
+
+#index_userinfo span {
+    text-align: center;
+}
+
+#text_avatar {
+    position: relative;
+    top: 4px;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 20px;
+    background-color: #009688;
+    font-size: 20px;
+    color: #fff;
+    margin-right: 8px;
+    margin-left: 20px;
+}
+
+.layui-nav-img {
+    width: 40px;
+    height: 40px;
+}
