@@ -32,7 +32,7 @@ $(function() {
         data = { username: $("#form_register [name=username]").val(), password: $("#form_register [name=password]").val() }
         $.post("/api/register", data, function(res) {
             if (res.status !== 0) {
-                return layer.msg(res.message);
+                return layer.msg("注册失败！");
             }
             layer.msg('注册成功！');
             setTimeout(function() {
@@ -53,7 +53,6 @@ $(function() {
         $.post("/api/login", data, function(res) {
             console.log(res);
             if (res.status !== 0) {
-                console.log(54454555);
                 return layer.msg("登陆失败！");
             }
             layer.msg('登录成功！');
@@ -61,7 +60,7 @@ $(function() {
             localStorage.setItem("token", res.token);
             // 设置定时器一秒中后在跳转页面
             setTimeout(function() {
-                // location.href = "/index.html";
+                location.href = "/index.html";
             }, 1000)
         });
     })

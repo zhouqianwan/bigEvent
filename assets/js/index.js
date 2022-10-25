@@ -23,20 +23,10 @@ function getUserInfo() {
         // 里面的res就是后端的res.send发送到前端的数据  数据中包含用户输入的数据
         success: function(res) {
             if (res.status !== 0) return layer.msg("获取用户信息失败！");
-            layer.msg("获取用户信息成功！")
-                // 渲染用户的头像
+            // layer.msg("获取用户信息成功！")
+            // 渲染用户的头像
             renderAvatar(res.data);
         },
-        // 执行complete函数，可以使用res.responseJSON拿到服务器响应回来的数据
-        complete: function(res) {
-            console.log(res);
-            if (res.status == 401) {
-                // 强制清除token
-                localStorage.removeItem("token")
-                    // 跳转到login页面
-                location.href = "/login.html";
-            }
-        }
 
 
     })
@@ -55,11 +45,12 @@ function renderAvatar(user) {
         $(".layui-nav-img").attr("src", user.user_pic).show();
         // 图片头像出现，文字头像就隐藏
         $("#text_avatar").hide();
+        $("#index_userinfo #text_avatar").html(first).hide();
     } else {
         // 渲染文字头像 让图片头像隐藏
         $(".layui-nav-img").hide();
         // 把名字当成一个数组，取第一个值 大写字母
-        var first = user.username[0].toUpperCase();
+        var first = name[0].toUpperCase();
         $("#text_avatar").html(first).show();
         $("#index_userinfo #text_avatar").html(first).show();
     }

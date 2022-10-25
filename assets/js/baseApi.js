@@ -15,8 +15,7 @@ $.ajaxPrefilter(function(options) {
     // 执行complete函数，可以使用res.responseJSON拿到服务器响应回来的数据
 
     options.complete = function(res) {
-        console.log(res);
-        if (res.status == 401 || res.responseJSON.status == 1) {
+        if (res.status == 401) {
             // 强制清除token
             localStorage.removeItem("token")
                 // 跳转到login页面

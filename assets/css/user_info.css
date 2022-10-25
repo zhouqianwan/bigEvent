@@ -1,0 +1,28 @@
+body,
+html {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    padding: 30px;
+    background-color: #f2f3f5;
+}
+
+.layui-input-block {
+    width: 600px;
+}
+
+.layui-form-item {
+    height: 50px;
+    margin-top: 30px;
+}
+
+.layui-btn {
+    margin-right: 50px;
+}
+
+.layui-card-header {
+    font-size: 18px;
+    font-weight: 500;
+}
